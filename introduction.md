@@ -18,179 +18,158 @@ else.
 
 This tutorial is not aimed at anyone completely new to programming. Agda is similar on
 a basic level to typed functional languages such as Haskell and ML, and so knowing a 
-language in the ML family will certainly make learning Agda a great deal easier, however
-those languages are not a prerequisite for this tutorial. Solid understanding of 
-imperative programming (C, Scala, Ruby..) as well as the logical constructs that go with
-it is assumed.
+language in the ML family will certainly make learning Agda a great deal easier. If you
+don't know a statically typed functional language, I recommend that you learn Haskell,
+as Agda has a close relationship with the Haskell ecosystem. If you're looking for a good
+Haskell tutorial, look no further than this book's companion, [Learn You a Haskell](learnyouahaskell.com).
 
-It took a long time for everything in Agda to fall into place in my head. Agda is *hard*.
-After some time, though, Agda's inherent awesomeness comes to the fore, and it all just
-'clicked'. If you encounter obstacles in your Agda learning, don't be discouraged! Keep
-working, and eventually you will be a master of Agda fu.
+Really, I mean it. If you don't know Haskell (or ML), learn it before trying to tackle
+Agda.
 
+Understanding of imperative and object oriented programming (C, Java, Ruby..) isn't
+necessary. In fact, trying to apply skills learnt from these languages might even be
+harmful when you're trying to learn Agda.
+
+The moral of the story is: keep an open mind. A lot of Agda's power comes from features 
+that are at first difficult to understand. It took a long time for everything in Agda 
+to fall into place in my head. Agda is *hard*. After some time, though, Agda's inherent
+awesomeness comes to the fore, and it all just clicks. If you encounter 
+obstacles in your Agda learning, don't be discouraged! Keep working, and eventually 
+you will be a master of Agda fu.
+ 
 What is Agda, anyway?
 ---------------------
 
-Agda is a *dependently typed*, *purely functional* programming language based on *intuitionistic
-logic* or, more accurately, *Martin-Löf type theory*. Because of these things, it is also
-designed to be used as a programming *proof assistant*.
+Agda is a programming language, but not a programming language like Java. It's not 
+even very much like Haskell, although it's a lot more like Haskell than Java. 
 
-That probably didn't explain much, so I'll break down each of those terms below, in no
-particular order:
+Agda is a programming language that uses *dependent types*. Many of you would
+be familiar with types from imperative languages such as Java or C++, and if you're
+reading up to this point, you should also have a familiarity with types from
+Haskell.
 
-### Purely Functional
+Types in these languages essentially annotate expressions with a tag. At a simple level,
+an expression's type might just be a concrete type, like `Bool` or `Int`. Java (through
+generics), C++ (through templates) and Haskell all support polymorphic types as well,
+such as `List a` or `Map k v`.
 
-Like [Haskell](), Agda doesn't describe what stuff *does*, but instead provides 
-definitions of what stuff *is*. The difference is subtle, but very
-important. Instead of providing essentially a list of commands for the computer to 
-execute, Agda's functions resemble mathematical functions. For instance, they are 
-*referentially transparent*. Referential transparency means that for a given input,
-a function will only ever produce one output. Addition is a referentially transparent
-function (2 + 2 always equals 4), whereas a random number generator is not.
+But, if `List a` is a type, then what exactly *is* just `List` (without the parameter)? 
+Haskell calls it a "type constructor", but really it's a *function* at the type level. `List` takes in a type, say `Int`,
+and returns a new type, `List Int`. Haskell (with appropriate extensions) even supports arbitrary functions on the 
+type level, that don't necessarily have to construct a type term, and instead can simply refer to existing ones.
 
-This might seem strange - If Agda *only* allows referentially transparent functions, how
-do you do things like generate random numbers? How do you mutate data structures? Doesn't
-this rule out a huge class of programs?
+So, Haskell has type-level functions, even type-level types (kinds). It almost seems like
+an entirely new language, overlaid over Haskell, that operates at compile time, manipulating 
+type terms. 
 
-The answer is yes. It does rule out many implementations of some algorithms. So, Agda 
-*does* include a "way out" for those occasions when you *really really* need to do some
-side effects. But, most of the time, you don't. Even when you think you do, you don't.
+In fact, you could think of any type system this way. In C++, people exploit the Turing-completeness
+of their type system to perform compile-time analysis and computation. While such type level work
+is very powerful, I fear that such manipulations are
+very often difficult to understand and manipulate. Even in Haskell, applications that make
+extensive use of type-level computation are very often substantially harder to comprehend. 
+The type-level "language" is almost always substantially more complicated to work with than the value-level "language"[^1].
 
-Haskell includes a similar way out, and its use is frowned upon in the Haskell world. In
-Agda, the use of side-effects presents a far greater problem - It impacts
-drastically on the properties that you can easily prove about your program. For this 
-reason, I won't be talking about side-effects, monads, or other such things until quite
-a bit later in this tutorial.
+In Agda, the distinction between types and values does not exist. Instead, the language you
+use to manipulate type terms is exactly the same language that you use to manipulate values.
 
-### Dependently Typed
+This means that you can actually include values *inside* a type. For example, the `List`
+type constructor can be parameterized by both the type of its contents *and* the length of 
+the list in question (we'll be doing this later). This allows the compiler to check for you
+to make sure there are no cases where you attempt to call `head` on a potentially empty list,
+for example. Being able to include values inside a type, and use all the same value-level operations
+on them, is what makes Agda *dependently typed* - Not only can values have a type, 
+but types can have a value.
 
-Unlike [Haskell]() or any imperative language, Agda is dependently
-typed. The typical definition of dependent types is that "Not only do values depend on
-types, but types can also depend on values". This doesn't really give much of an 
-explanation, so I'll attempt to provide a better one:
+In fact, seeing as the language of values and the language of types are the same, *any property*
+that you can express about a value can be expressed statically in its type, and machine checked
+by Agda. We can statically eliminate any error scenario from our program.
 
-In most statically typed languages, there is a clear distinction between *value level*
-and *type level*. Values are things that you actually use in the computation of your
-program, like `4` or `true`, whereas types are tags that classify these values, like
-`Int` or `Bool` or `AbstractFactoryFactory`. 
+If I can come up with a function of type `Foo -> Bar` (and Agda says that it's type correct)
+that means that I've, in addition to written a program, also written a proof by construction
+that, assuming some premise `Foo`, the judgement `Bar` holds. We'll touch more on proofs later.
 
-If we were to take a *generic* (or *parametrically polymorphic*) type, such as Haskell's
-`[a]` or Java's `ArrayList<A>`, the only parameter you can provide to the list type
-constructor is another type, for example `Float` could be provided 
-for `ArrayList<Float>` or `[Float]` and so on. We can't pass values as type parameters -
-`ArrayList<12>` makes no sense.
+Seeing as our `Foo` and `Bar` can be as expressive as we like, this lets us prove *anything we
+want* about our program simply by exploiting this correspondence between proofs and programs -
+called the [Curry-Howard Correspondence](http://en.wikipedia.org/wiki/Curry–Howard_correspondence),
+discovered by two brilliant logicians in the sixties.
 
-It would be nice, though, if we could do something like that. Returning to our list 
-example, we know that adding an item to a list increases its length by one. We also know
-that the initial empty list has a length zero. Therefore, it should be possible for the
-compiler to reason (at least partially) about the length of the list in our program. 
-Trying to take an item out of an empty list is, however, a *runtime* error. Why? If our
-compiler is sufficiently smart, it should be able to notice the error at compile time.
+#### Why Prove when you can just test?
+<div class="aside"> 
+The validity of formal verification of software is often hotly contested by programmers who usually 
+have no experience in formal verification. Often testing methodologies are presented as a more viable
+alternative.
 
-With Agda, we can parameterize our types with values. This allows us to include the length 
-of the list in its type, and specify the length-changing properties of the various list 
-operations in their type definitions. With this information, Agda can check at *compile*
-time whether or not we try and take an item out of an empty list.
+While formal verification is excessive in some situations where bugs are acceptable, I hardly think
+that testing could replace formal verification completely. Here's three of reasons why:
 
-Agda goes even further than this and just about eliminates the distinction between types
-and values altogether.
-
-~~~~{.haskell}
-4 : Int
-~~~~
-
-The above line of Agda says that the value `4` is of type `Int`. Not too shabby. But what
-about `Int`?
-
-~~~~~{.haskell}
-Int : Set
-~~~~~~
-
-`Int` is of type `Set`. In Agda, most familiar types such as `Int`, `Bool` and 
-so on are of type `Set`. So, types have types. Or, perhaps more accurately, types *are 
-values*, of type `Set`. 
-
-`Set` too has a type, written `Set₁`. That in turn has type `Set₂`. This heirarchy of
-types never ends. It's turtles (or types) all the way down (or up).
-
-> The more mathematically inclined of you might have noticed that this
-> is Agda's way of resolving [Russell's Paradox](), which comes directly from Martin-Löf
-> and others' work. 
-
-Don't panic too much if that doesn't make a great deal of sense to you. All will be 
-made clear over the next few chapters.
-
-### Proof Assistant
-
-Because it is dependently typed, Agda allows us to encode *any*
-property of data in our program in its type. This means that we can statically reason
-about any property of our program, enabling us to use Agda's type checker as a proof
-checker. What we wish to prove about our program is precisely what we choose to
-encode in the type system.
-
-Proving things about your program might sound scary at first, but as you learn Agda
-it will come across more as a logical extension of the type system, rather than grade 
-school math homework.
-
-In this way Agda is really "living the dream" of the [Curry-Howard Isomorphism](), an
-essential realisation that types and intuitionistic logic (and cartesian closed categories)
-are the same thing. Programs *are* proofs, and termination is soundness.
-
-### Intuitionistic Logic
-
-Most programmers have been exposed to simple boolean logic. You
-might even remember boolean algebra symbols such as `∧` (and), `∨` (or), and `¬`(not).
-
-This boolean algebra can be extended into a system of *propositional logic*, which is 
-essentially a system of statements, which can be considered true or false. Some of these
-systems include *quantifiers* such as ∀ (for all) and ∃ (there exists). 
-
-Some of these logical systems are called *classical logic* systems. These systems say 
-that all statements are either true or false. So, if I made a statement about which
-I have no knowledge, for example:
-
-> There exists a teapot between the Earth and Mars that cannot be observed by humans in
-> any way.
-
-Classical logic says that this statement is either true, or it is false, even though I
-will never have any way to prove it in either direction. This is called the *law of the
-excluded middle*, shown below:
-
-   ∀t. t ∨  ¬t
-
-*Intuitionistic logic*, by contrast, rejects this notion. This might seem strange. After
-all, if something is true, then it's clearly not false. And if something is false, then
-it must not be true. The problem, however, arises when we have something that is neither
-false nor true[^1] :
-
->   Pirates are still the most skilled mathematicians.
-
-Let us assume that pirates have never been the most skilled mathematicians. If our 
-statement is true, then we have an outright contradiction. Pirates are not skilled
-mathematicians, and this statements says they are. If our statement is false, however,
-we *still* have a contradiction, as the statement implies that our Pirates were *once*
-skilled at mathematics, even if they are skilled no longer. 
-
-Intuitionistic logic only accepts something as true or false if there is a proof of 
-its truthhood or falsehood. More importantly, it makes existence proofs *constructive*,
-that is, an object can only be shown to exist by demonstrating an algorithm that
-produces it. This has deep implications for the way we write programs in light of
-the Curry Howard isomorphism.
-
-If I have an existence assertion such as the teapot example above, I could only prove
-that the teapot exists by presenting evidence for it. If I can prove that it *cannot*
-be proven true, then that is a proof that the assertion is false.    
-
-Proof by contradiction is, therefore, not allowed in intuitionistic logic, or indeed
-in Agda. 
-
-[^1]: Some people use the example of "Are you still beating your wife?" for this 
-sort of statement. I don't like that one as I'd rather be cheerful than discuss domestic 
-violence in a programming textbook.
+ * **Proofs work in concurrent scenarios**. You can't reliably unit test against race conditions, starvation 
+    or deadlock. All of these things can be eliminated via formal methods.
+ * **Proofs, like programs, are compositional**. Tests are not. In testing scenarios, one typically has to
+   write both unit tests and integration tests: unit tests for testing small components individually,
+   and integration tests for testing the interaction between those small components. If I have proofs
+   of the behavior of those small components, I can simply use those proof results to satisfy a proof
+   obligation about their interaction -- there is no need to reinvent everything for both testing
+   scenarios.
+ * **Proofs are fool-proof**. If I have a suite of tests to show some property, it's possible that that
+   property does not actually hold - I simply have not been thorough enough in my tests. With formal
+   verification, it's impossible for violations of your properties to slip through the cracks like that.
 
 
+Of course, proofs are not for every scenario, but I think they should be far more widely used than they
+currently are.
+
+</div>
+
+Thanks to Curry-Howard, Agda can also be used as a *proof* language, as opposed to a *programming*
+language. You can construct a proof not just about your program, but anything you like.
+
+In fact, Curry-Howard shows us that the fundamentals of functional programming (Lambda Calculus), 
+and the fundamentals of mathematical proof (Logic) are in fact the same thing (*isomorphic*). This
+means that we can structure mathematical proofs in Agda as *programs*, and have Agda check them
+for us. It's just as valid as a standard pen-and-paper mathematical proof (probably more so, seeing
+as Agda doesn't let us leave anything as "an exercise to the reader"[^2]) - and Agda can check
+our proof's correctness automatically for us. We'll be doing this later by proving some basic 
+mathematical properties on Peano natural numbers.
+
+So, Agda is a language that really lives the dream of the Curry-Howard correspondence. An Agda
+program is also a proof of the formula represented in its type.
+
+How do I get started?
+---------------------
+
+At the time of writing, it is only really feasible to edit Agda code using Emacs. GNU Emacs or XEmacs
+are both fine. I personally am not an Emacs fan, but even I use Emacs to edit Agda, and so should you.
+You don't need a great deal of Emacs proficiency to edit Agda code, however.
+
+You'll also need GHC, a Haskell compiler, and an assortment of tools and libraries that make up the
+[Haskell Platform](http://hackage.haskell.org/platform/). It is the best way to get started using
+Haskell, and it's also the easiest way to get Agda.
+
+Once you have Haskell and Emacs, there are three things you still need to do:
+
+* Install Agda. Linux users may have Agda packages available from their package manager (search for
+  "agda" to find out). If not or otherwise, simply use the Haskell platform's `cabal-install` tool
+  to download, compile, and set up Agda.
+
+      $ cabal install agda agda-executable
+
+* Install Agda mode for emacs. Simply type in a command prompt (where Agda is in your `PATH`):
+
+      $ agda-mode setup
+
+* Install Haskell mode for emacs. If Haskell mode is not available in your package manager, you
+  can [download Haskell mode](http://www.iro.umontreal.ca/μonnier/elisp/#haskell-mode) and install
+  it by adding to your `.emacs` file[^0]:
+
+     (setq load-path (cons "/path/to/my/haskell/mode" load-path))
+
+By then you should be all set. To find out if everything went as well as expected, head on over
+to the next section, "Hello Peano!".
 
 
+[^0]: Adjusting the path as appropriate, of course.
+[^1]: Fans of C++ would know what I'm talking about here.
+[^2]: If only Agda existed when Fermat was around.
 
 
 

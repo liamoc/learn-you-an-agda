@@ -43,7 +43,7 @@ sprintf : (f : String) → FormatArgs f
 sprintf = sprintf′ "" ∘ parse
   where
     sprintf′ : String → (f : Format) → Args f
-    sprintf′ _     invalid                    = λ b → "" --who cares, impossible
+    sprintf′ accum invalid                    = λ t → ""
     sprintf′ accum (valid [])                 = accum
     sprintf′ accum (valid (argument _ s ∷ l)) = λ t →  (sprintf′ (accum ++ s t) (valid l))
     sprintf′ accum (valid (literal c ∷ l))    = sprintf′ (accum ++ fromList [ c ]) (valid l)
