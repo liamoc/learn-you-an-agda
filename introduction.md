@@ -93,8 +93,8 @@ want* about our program simply by exploiting this correspondence between proofs 
 called the [Curry-Howard Correspondence](http://en.wikipedia.org/wiki/Curry–Howard_correspondence),
 discovered by two brilliant logicians in the sixties.
 
-#### Why Prove when you can just test?
 <div class="aside"> 
+#### Why Prove when you can just test?
 The validity of formal verification of software is often hotly contested by programmers who usually 
 have no experience in formal verification. Often testing methodologies are presented as a more viable
 alternative.
