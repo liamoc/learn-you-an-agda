@@ -146,7 +146,7 @@ So, Agda is a language that really lives the dream of the Curry-Howard correspon
 program is also a proof of the formula represented in its type.
 
 How do I get started?
----------------------
+=====================
 
 At the time of writing, it is only really feasible to edit Agda code using Emacs. GNU Emacs or XEmacs
 are both fine. I personally am not an Emacs fan, but even I use Emacs to edit Agda, and so should you.

@@ -1,0 +1,12 @@
+body {
+  background: #FFFFBA;
+  margin:0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight:bold;
+}

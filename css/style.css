@@ -58,7 +58,7 @@ pre.sourceCode span.Error { color: red; }
 
 #content {
   background: #FFFFFF;
-  padding: 20px;
+  padding: 40px;
 
 }
 code {
@@ -122,10 +122,10 @@ ul {
 }
 
 body {
-   margin:60px;
+   margin:40px;
    margin-bottom:20px;
    font-family: sans-serif;
-   background: #CCCCCC;
+   background: #DACCCC;
 }
 
 h1 {
