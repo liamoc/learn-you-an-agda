@@ -1,8 +1,10 @@
-Introduction
-============
+-----
+title: Introduction
+date: 16th Febuary 2011
+-----
 
 About this tutorial
--------------------
+===================
 
 Welcome to *Learn You an Agda and Achieve Enlightenment!*. If you're reading this, 
 you're probably curious as to what Agda is, why you want to learn it, and in general what 
@@ -15,6 +17,9 @@ programming to ordinary people rather than Ivory Tower Academics. Of course, see
 to give it a try. Learning Agda was a very rewarding but very difficult process for me. It
 is my hope that, by writing this tutorial, it will become a little bit easier for everyone
 else.
+
+Step One: Learn Haskell
+-----------------------
 
 This tutorial is not aimed at anyone completely new to programming. Agda is similar on
 a basic level to typed functional languages such as Haskell and ML, and so knowing a 
@@ -36,9 +41,9 @@ to fall into place in my head. Agda is *hard*. After some time, though, Agda's i
 awesomeness comes to the fore, and it all just clicks. If you encounter 
 obstacles in your Agda learning, don't be discouraged! Keep working, and eventually 
 you will be a master of Agda fu.
- 
+
 What is Agda, anyway?
----------------------
+=====================
 
 Agda is a programming language, but not a programming language like Java. It's not 
 even very much like Haskell, although it's a lot more like Haskell than Java. 
@@ -64,7 +69,7 @@ type terms.
 
 In fact, you could think of any type system this way. In C++, people exploit the Turing-completeness
 of their type system to perform compile-time analysis and computation. While such type level work
-is very powerful, I fear that such manipulations are
+is very powerful, I fear that such type machinery is
 very often difficult to understand and manipulate. Even in Haskell, applications that make
 extensive use of type-level computation are very often substantially harder to comprehend. 
 The type-level "language" is almost always substantially more complicated to work with than the value-level "language"[^1].
@@ -84,9 +89,15 @@ In fact, seeing as the language of values and the language of types are the same
 that you can express about a value can be expressed statically in its type, and machine checked
 by Agda. We can statically eliminate any error scenario from our program.
 
+Types are Proofs
+----------------
+
+<img class='img right' src='/static/owl.png' />
+
 If I can come up with a function of type `Foo -> Bar` (and Agda says that it's type correct)
 that means that I've, in addition to written a program, also written a proof by construction
-that, assuming some premise `Foo`, the judgement `Bar` holds. We'll touch more on proofs later.
+that, assuming some premise `Foo`, the judgement `Bar` holds (We'll touch more on proofs later - 
+I don't want to get bogged down in details just yet)
 
 Seeing as our `Foo` and `Bar` can be as expressive as we like, this lets us prove *anything we
 want* about our program simply by exploiting this correspondence between proofs and programs -
@@ -94,7 +105,7 @@ called the [Curry-Howard Correspondence](http://en.wikipedia.org/wiki/Curry–Ho
 discovered by two brilliant logicians in the sixties.
 
 <div class="aside"> 
-#### Why Prove when you can just test?
+### Why prove when you can just test?
 The validity of formal verification of software is often hotly contested by programmers who usually 
 have no experience in formal verification. Often testing methodologies are presented as a more viable
 alternative.
@@ -151,17 +162,17 @@ Once you have Haskell and Emacs, there are three things you still need to do:
   "agda" to find out). If not or otherwise, simply use the Haskell platform's `cabal-install` tool
   to download, compile, and set up Agda.
 
-      $ cabal install agda agda-executable
+        $ cabal install agda agda-executable
 
 * Install Agda mode for emacs. Simply type in a command prompt (where Agda is in your `PATH`):
 
-      $ agda-mode setup
+        $ agda-mode setup
 
 * Install Haskell mode for emacs. If Haskell mode is not available in your package manager, you
   can [download Haskell mode](http://www.iro.umontreal.ca/μonnier/elisp/#haskell-mode) and install
   it by adding to your `.emacs` file[^0]:
 
-     (setq load-path (cons "/path/to/my/haskell/mode" load-path))
+        (setq load-path (cons "/path/to/my/haskell/mode" load-path))
 
 By then you should be all set. To find out if everything went as well as expected, head on over
 to the next section, "Hello Peano!".

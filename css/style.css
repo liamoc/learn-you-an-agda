@@ -1,0 +1,158 @@
+
+/* FONTS FEATURED AT liamoc.net  */
+/* 
+*/ 
+pre {
+   background-color: #EBEBEB;
+   padding:5px;
+   padding-left:20px;
+}
+.right {
+   float:right;
+}
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre 
+    { margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none; }
+td.lineNumbers { text-align: right; background-color: #EBEBEB; color: black; padding-right: 5px; padding-left: 5px;font-family:Monaco,monospace; font-size:11px; } 
+.figure {
+   margin-left:50px;
+}
+.caption {
+   font-size:10px;
+}
+td.lineNumbers pre {background-color: #EBEBEB; }
+.aside {
+   background-color: #EBEBAA;
+   padding:5px;
+   padding-left:20px;
+   padding-right:20px;
+}
+.aside pre {
+   background-color: white;
+}
+td.sourceCode { padding-left: 5px; }
+pre.sourceCode { }
+pre.sourceCode span.Normal { }
+pre.sourceCode span.Keyword { color: #AA00AA; }
+pre.sourceCode span.DataType { color: #800000; }
+pre.sourceCode span.DecVal { color: #0000FF; }
+pre.sourceCode span.BaseN { color: #0000FF; }
+pre.sourceCode span.Float { color: #800080; }
+pre.sourceCode span.Char { color: #FF00FF; }
+pre.sourceCode span.String { color: #DD0000; }
+pre.sourceCode span.Comment { color: #808080;  }
+pre.sourceCode span.Others { }
+pre.sourceCode span.Alert { color: green; }
+pre.sourceCode span.Function { color: #000080; }
+pre.sourceCode span.RegionMarker { }
+pre.sourceCode span.Error { color: red; }
+ 
+.titleimage {
+  font-family: serif;
+  float:left;
+  margin:0px;
+  margin-left:18px;
+  font-size:42px;
+}
+
+
+
+#content {
+  background: #FFFFFF;
+  padding: 20px;
+
+}
+code {
+   font-family: monospace;/*
+   float:left;
+   margin-top:5px;
+   margin-bottom:20px;
+   width:100%;
+   padding:15px;
+   padding-left:30px;
+   border-left:10px solid #CCCCCC;*/
+
+}
+
+tt {
+   font-family: monospace;
+}
+
+pre {
+   font-family: monospace;
+}
+
+a {
+ color:#222255
+}
+a:visited {
+ color:#555577;
+}
+a:hover {
+ color:#5555AA;
+}
+.titlesub {
+   color:#444444;
+   font-size:14px;
+   margin-left:3px;
+}
+.title {
+  font-family: serif;
+  font-size: 38px;
+}
+.date {
+  font-size: 17px;
+  color:#444444;
+}
+.container {
+  margin-left:auto;
+  margin-right:auto;
+  max-width:900px;
+  min-width:640px;
+  text-align:justify;
+}
+
+.box {
+ margin-left:20px;
+ margin-right:20px;
+ margin-top:35px;
+}
+
+ul {
+   list-style-type: square;
+}
+
+body {
+   margin:60px;
+   margin-bottom:20px;
+   font-family: sans-serif;
+   background: #CCCCCC;
+}
+
+h1 {
+  font-family: serif;
+   font-weight:normal;
+  color:#222222;
+}
+h2 {
+  font-family: serif;
+  color:#444444;
+   font-weight:normal;
+}
+h3 {
+  font-family: serif;
+   font-weight:normal;
+
+}
+.header {
+  text-align:right;
+  height:78px;
+  vertical-align:bottom;
+  margin-right:15px;
+  padding-top:9px;  
+}
+.footer {
+   font-size:12px;
+   color:#444444;
+   text-align:center;
+   margin-top:40px;
+}
