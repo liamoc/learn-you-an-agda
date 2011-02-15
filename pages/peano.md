@@ -1,6 +1,8 @@
 -----
 title: Hello, Peano
 date: 16th Feb 2011
+next:
+prev: <a href="/pages/introduction.html">← Introduction</a>
 -----
 
 Definitions, Definitions

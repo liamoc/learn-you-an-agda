@@ -7,6 +7,21 @@ pre {
    padding:5px;
    padding-left:20px;
 }
+.headerlist {
+   display:table-row;
+   list-style:none;
+}
+.headerlist li {
+   display:table-cell;
+   list-style:none;
+   width:33%;
+}
+.header {
+   display: table;
+   padding-top:10px;
+   padding-bottom:30px;
+   width:100%;
+}
 .right {
    float:right;
 }
@@ -48,7 +63,6 @@ pre.sourceCode span.Error { color: red; }
  
 .titleimage {
   font-family: serif;
-  float:left;
   margin:0px;
   margin-left:18px;
   font-size:42px;
@@ -142,13 +156,6 @@ h3 {
   font-family: serif;
    font-weight:normal;
 
-}
-.header {
-  text-align:right;
-  height:78px;
-  vertical-align:bottom;
-  margin-right:15px;
-  padding-top:9px;  
 }
 .footer {
    font-size:12px;
