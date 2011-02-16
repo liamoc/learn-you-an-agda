@@ -1,7 +1,7 @@
 -----
 title: Hello, Peano
-date: 16th Feb 2011
-next:
+date: 16th Febuary 2011
+next: <a href="/pages/proofs.html">Propositions and Predicates →</a>
 prev: <a href="/pages/introduction.html">← Introduction</a>
 -----
 
@@ -68,7 +68,8 @@ we'll be developing models for similar things in Agda later, so you will be able
 * For any natural number `ν`, `ν + 1` is also a natural number. For convenience, We shall refer to `ν + 1` as `suc ν`[^1]. (`∀ν∈ℕ → suc ν∈ℕ`).
 
 This is called an *inductive definition* of natural numbers. We call it *inductive* because it consists of a *base* rule, where we define a fixed starting point,
-and an *inductive* rule that, when applied to an element of the set, *induces* the next element of the set. This is a very elegant way to define infinitely large sets. 
+and an *inductive* rule that, when applied to an element of the set, *induces* the next element of the set. This is a very elegant way to define infinitely large sets. This way
+of defining natural numbers was developed by a mathematician named Giuseppe Peano, and so they're called the Peano numbers.
 
 We will look at inductive *proof* in the coming chapters, which shares a similar structure.
 
@@ -182,6 +183,9 @@ minibuffer, we can type an expression for 3 + 2:
 And we get the result (5):
 
     (suc (suc (suc (suc (suc n)))))
+
+In this chapter we have examined the Peano natural numbers, and defined some basic functions and data types in Agda. In the next chapter, we'll look at propositional logic, and
+how to encode logical proofs in Agda using this system.
 
 [^1]: `suc` standing for successor.
 [^2]: Unlike Haskell, type declarations are mandatory.
