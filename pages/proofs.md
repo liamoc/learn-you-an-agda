@@ -4,6 +4,10 @@ date: 16th Febuary 2011
 prev: <a href="/pages/peano.html">← Hello, Peano</a>
 next: <a href="#">Peano Proofs →</a>
 -----
+
+“Logic is the art of going wrong with confidence”
+=================================================
+
 Now that we've defined the natural numbers, we're going to do some simple example proofs of some basic mathematical properties. Before we do this, though, I'm going to
 introduce you to a bit of logic. If you're already familiar with predicate logic, you may still want to read this section, as it clarifies its relationship with Agda
 programming.
