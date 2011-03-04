@@ -23,15 +23,19 @@ else.
 Step One: Learn Haskell
 -----------------------
 
+<img class='img left' src='/static/koala.png' />
+
 This tutorial is not aimed at anyone completely new to programming. Agda is similar on
 a basic level to typed functional languages such as Haskell and ML, and so knowing a 
 language in the ML family will certainly make learning Agda a great deal easier. If you
 don't know a statically typed functional language, I recommend that you learn Haskell,
 as Agda has a close relationship with the Haskell ecosystem. If you're looking for a good
 Haskell tutorial, look no further than this book's companion, [Learn You a Haskell](learnyouahaskell.com).
+You should only have to read the first few chapters of this book in order to get a feel
+for Agda.
 
-Really, I mean it. If you don't know Haskell (or ML), learn it before trying to tackle
-Agda.
+If you don't know how purely functional programming works, learn a little of it before 
+trying to tackle Agda.
 
 Understanding of imperative and object oriented programming (C, Java, Ruby..) isn't
 necessary. In fact, trying to apply skills learnt from these languages might even be
@@ -59,6 +63,8 @@ Types in these languages essentially annotate expressions with a tag. At a simpl
 an expression's type might just be a concrete type, like `Bool` or `Int`. Java (through
 generics), C++ (through templates) and Haskell all support polymorphic types as well,
 such as `List a` or `Map k v`.
+
+<img class='img right' src='/static/types.png' />
 
 But, if `List a` is a type, then what exactly *is* just `List` (without the parameter)? 
 Haskell calls it a "type constructor", but really it's a *function* at the type level. `List` takes in a type, say `Int`,

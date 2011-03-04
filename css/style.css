@@ -24,12 +24,26 @@ pre {
 }
 .right {
    float:right;
+   margin-left:20px;
+}
+.center {
+   position:relative;
+   left:auto;
+   right:auto;
+
+}
+.left {
+   float:left;
+   margin-right:20px;
 }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre 
     { margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none; }
 td.lineNumbers { text-align: right; background-color: #EBEBEB; color: black; padding-right: 5px; padding-left: 5px;font-family:Monaco,monospace; font-size:11px; } 
 .figure {
    margin-left:50px;
+}
+.img {
+   margin-bottom:15px;
 }
 .caption {
    font-size:10px;
