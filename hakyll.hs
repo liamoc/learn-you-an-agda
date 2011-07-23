@@ -1,27 +1,29 @@
 #!/usr/bin/runhaskell
-import Text.Hakyll   
-import Text.Hakyll.Render
-import Text.Hakyll.File
-import Text.Hakyll.CreateContext
-import Text.Pandoc.Shared
+{-# LANGUAGE OverloadedStrings #-}
+import Control.Arrow((>>>))
+import Hakyll   
 
-withHeader = (`combine` createPage "header.markdown")
-withFooter = (`combine` createPage "footer.markdown")
+main = hakyll $ do
+    match "css/*" $ do
+      route idRoute
+      compile compressCssCompiler
 
-main = hakyllWithConfiguration conf $ do
-    directory static "static"
-    directory css "css"
-    directory render "pages"
-    renderCover "index.md"
-    renderTOC "toc.md"
-    where render = renderChain ["templates/default.html"]
-                 . withHeader
-                 . withFooter
-                 . createPage
-          renderCover = renderChain ["templates/cover.html"]
-                      . createPage
-          renderTOC   = renderChain ["templates/toc.html"]
-                      . withHeader
-                      . withFooter
-                      . createPage
-          conf = (defaultHakyllConfiguration "http://learnyouanagda.com") { pandocWriterOptions = defaultWriterOptions { writerHTMLMathMethod = GladTeX } }
+    match "static/*" $ do
+      route idRoute
+      compile copyFileCompiler
+
+    match "templates/*" $ do
+      compile templateCompiler
+
+    match "pages/*" $ do
+      route (setExtension "html")
+      compile $ pageCompiler >>> applyTemplateCompiler "templates/default.html" >>> relativizeUrlsCompiler
+
+    match "toc.md" $ do
+      route (setExtension "html")
+      compile $ pageCompiler >>> applyTemplateCompiler "templates/toc.html" >>> relativizeUrlsCompiler
+
+    match "index.md" $ do
+      route (setExtension "html")
+      compile $ pageCompiler >>> applyTemplateCompiler "templates/cover.html" >>> relativizeUrlsCompiler
+
