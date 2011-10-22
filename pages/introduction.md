@@ -1,7 +1,7 @@
 -----
 title: Introduction
 date: 16th Febuary 2011
-prev:
+prev: 
 next: <a href="/pages/peano.html">Hello, Peano → </a>
 -----
 
