@@ -133,7 +133,7 @@ When we prove a conjunction on pen and paper, we simply prove both of the two co
 have a proof of a conjunction. This means that conjunction corresponds to a *pair* or a *tuple* (more formally known as a *product type*) in Agda. 
 
 ~~~~~{.agda}
-data _∧_ (P : Set) (Q : Set) : Set -- \and for ∧
+data _∧_ (P : Set) (Q : Set) : Set where -- \and for ∧
    ∧-intro : P → Q → (P ∧ Q)
 ~~~~~
 
@@ -196,7 +196,7 @@ If conjunction is a *pair*, because it requires *both* proofs to hold, then disj
 in order to hold. In order to model this in Agda, we add *two* constructors to the type, one for each possible component of the disjunction.
 
 ~~~~~{.agda}
-data _∨_ (P Q : Set) : Set
+data _∨_ (P Q : Set) : Set where
    ∨-intro₁ : P → P ∨ Q
    ∨-intro₂ : Q → P ∨ Q
 ~~~~~
@@ -234,7 +234,7 @@ The only "false" values that exist in intuitionistic logic, therefore, are value
 We call this type `⊥`, pronounced "bottom". We define it like so:
 
 ~~~~~{.agda}
-data ⊥ : Set where -- nothing
+data ⊥ : Set where -- nothing. for ⊥ type \bot
 
 ~~~~~
 
