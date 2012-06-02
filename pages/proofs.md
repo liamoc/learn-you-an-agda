@@ -133,7 +133,7 @@ When we prove a conjunction on pen and paper, we simply prove both of the two co
 have a proof of a conjunction. This means that conjunction corresponds to a *pair* or a *tuple* (more formally known as a *product type*) in Agda. 
 
 ~~~~~{.agda}
-data _∧_ (P : Set) (Q : Set) : Set -- \and for ∧
+data _∧_ (P : Set) (Q : Set) : Set where -- \and for ∧
    ∧-intro : P → Q → (P ∧ Q)
 ~~~~~
 
