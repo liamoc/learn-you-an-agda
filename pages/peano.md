@@ -19,10 +19,12 @@ that sets Agda apart from other languages is its extensive use of unicode to mak
 unicode arrow (→), type `\->`.  I'm going to demonstrate this line by line, so bear with me.
 
 ~~~{.agda}
+module naturals where
 data ℕ : Set where
 ~~~
 
-To begin, we type `data ℕ`. The `data` keyword means we're defining a type - in this case, `ℕ`. For this example, we're specifying that this type, `ℕ`, is of type `Set` (that's what
+We define a module called naturals. Your file has to be named naturals.agda also.
+Then we type `data ℕ`. The `data` keyword means we're defining a type - in this case, `ℕ`. For this example, we're specifying that this type, `ℕ`, is of type `Set` (that's what
 the colon means). 
 
 Hold on a second, types have types? 
@@ -178,11 +180,11 @@ the type suggests. Later on, when we encode more information in our types, our c
 To evaluate an expression (just to verify that it truly does work), we can type `C-c C-n` into emacs, or select "Evaluate term to normal form" from the Agda menu. Then, in the
 minibuffer, we can type an expression for 3 + 2:
 
-    (suc (suc (suc n))) + (suc (suc n))
+    (suc (suc (suc zero))) + (suc (suc zero))
 
 And we get the result (5):
 
-    (suc (suc (suc (suc (suc n)))))
+    (suc (suc (suc (suc (suc zero)))))
 
 In this chapter we have examined the Peano natural numbers, and defined some basic functions and data types in Agda. In the next chapter, we'll look at propositional logic, and
 how to encode logical proofs in Agda using this system.
