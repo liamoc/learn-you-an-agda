@@ -35,7 +35,7 @@ Even `Set` (the type of our type `ℕ`) has a type: `Set₁`, which has a type `
 `Set` types mean later, but for now you can think of `Set` as the type we give to all the data types we use in our program.
 
 <div class="aside">
-This infinite heirarchy of types provides an elegant solution to [Russell's Paradox](http://en.wikipedia.org/wiki/Russell's_paradox). Seeing as for any ν∈ ℕ, `Set ν` contains
+This infinite heirarchy of types provides an elegant solution to <a href=http://en.wikipedia.org/wiki/Russell's_paradox>Russell's Paradox</a> . Seeing as for any ν∈ ℕ, `Set ν` contains
 only values "smaller" than ν, (for example, `Set₁` cannot contain `Set₁` or `Set₂`, only `Set`), Russell's problematic set (which contains itself) cannot exist and is not
 admissable.
 </div>
@@ -64,8 +64,8 @@ But we'd quickly find our text editor full of definitions and we'd be no closer 
 mathematical definition. The notation I'm using here should be familiar to anyone who knows set theory and/or first-order logic - don't panic if you don't know these things,
 we'll be developing models for similar things in Agda later, so you will be able to pick it up as we go along. 
 
-* Zero is a natural number (`0∈ℕ`). 
-* For any natural number `ν`, `ν + 1` is also a natural number. For convenience, We shall refer to `ν + 1` as `suc ν`[^1]. (`∀ν∈ℕ → suc ν∈ℕ`).
+* Zero is a natural number ($0\in\mathbb{N}$). 
+* For any natural number $n$, $n + 1$ is also a natural number. For convenience, We shall refer to $n + 1$ as $\mathtt{suc}\ n$[^1]. ($\forall n \in \mathbb{N}.\ \mathtt{suc}\ n \in \mathbb{N}$).
 
 This is called an *inductive definition* of natural numbers. We call it *inductive* because it consists of a *base* rule, where we define a fixed starting point,
 and an *inductive* rule that, when applied to an element of the set, *induces* the next element of the set. This is a very elegant way to define infinitely large sets. This way
@@ -73,7 +73,7 @@ of defining natural numbers was developed by a mathematician named Giuseppe Pean
 
 We will look at inductive *proof* in the coming chapters, which shares a similar structure.
 
-For the base case, we've already defined zero to be in ℕ by saying:
+For the base case, we've already defined zero to be in $\mathbb{N}$ by saying:
 
 ~~~{.agda}
 data ℕ : Set where 
@@ -82,9 +82,11 @@ data ℕ : Set where
 
 For the second point (the inductive rule), it gets a little more complicated. First let's take a look at the inductive rule definition in first order logic:
 
-    ∀ν ∈ ℕ → suc ν ∈ ℕ 
+<center>
+   $\forall n \in \mathbb{N}.\ \mathtt{suc}\ n \in \mathbb{N}$
+</center>
 
-This means, given a natural number `ν`, the constructor `suc` will return another natural number. So, in other words, `suc` could be considered a *function*
+This means, given a natural number `n`, the constructor `suc` will return another natural number. So, in other words, `suc` could be considered a *function*
 that, when given a natural number, produces the next natural number. This means that we can define the constructor `suc` like so:
 
 ~~~{.agda}

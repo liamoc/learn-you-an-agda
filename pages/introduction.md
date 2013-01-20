@@ -1,7 +1,7 @@
 -----
 title: Introduction
 date: 16th Febuary 2011
-prev:
+prev: _
 next: <a href="/pages/peano.html">Hello, Peano → </a>
 -----
 
@@ -170,23 +170,19 @@ Once you have Haskell and Emacs, there are three things you still need to do:
   "agda" to find out). If not or otherwise, simply use the Haskell platform's `cabal-install` tool
   to download, compile, and set up Agda.
 
-        $ cabal install agda agda-executable
+        $ cabal install agda
 
 * Install Agda mode for emacs. Simply type in a command prompt (where Agda is in your `PATH`):
 
         $ agda-mode setup
 
-* Install Haskell mode for emacs. If Haskell mode is not available in your package manager, you
-  can [download Haskell mode](http://www.iro.umontreal.ca/μonnier/elisp/#haskell-mode) and install
-  it by adding to your `.emacs` file[^0]:
+* Compile Agda mode as well (you'll need to do this again if you update Agda):
 
-        (setq load-path (cons "/path/to/my/haskell/mode" load-path))
+        $ agda-mode compile
 
 By then you should be all set. To find out if everything went as well as expected, head on over
 to the next section, "Hello Peano!".
 
-
-[^0]: Adjusting the path as appropriate, of course.
 [^1]: Fans of C++ would know what I'm talking about here.
 [^2]: If only Agda existed when Fermat was around.
 

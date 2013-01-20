@@ -1,0 +1,5 @@
+*.swp
+/_cache/
+/_site/
+/cabal-dev/
+/dist/
