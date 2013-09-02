@@ -12,7 +12,7 @@ Welcome to *Learn You an Agda and Achieve Enlightenment!*. If you're reading thi
 you're probably curious as to what Agda is, why you want to learn it, and in general what 
 the big deal is about dependently typed, purely functional programming.
 
-Inspired by BONUS, the writer of [Learn You a Haskell](learnyouahaskell.com), I decided
+Inspired by BONUS, the writer of [Learn You a Haskell](http://learnyouahaskell.com), I decided
 that I should write an approachable Agda tutorial that would introduce dependently typed
 programming to ordinary people rather than Ivory Tower Academics. Of course, seeing as
 *I* am one of those Ivory Tower Academics, this might not be easy. I am, however, prepared
@@ -30,7 +30,7 @@ a basic level to typed functional languages such as Haskell and ML, and so knowi
 language in the ML family will certainly make learning Agda a great deal easier. If you
 don't know a statically typed functional language, I recommend that you learn Haskell,
 as Agda has a close relationship with the Haskell ecosystem. If you're looking for a good
-Haskell tutorial, look no further than this book's companion, [Learn You a Haskell](learnyouahaskell.com).
+Haskell tutorial, look no further than this book's companion, [Learn You a Haskell](http://learnyouahaskell.com).
 You should only have to read the first few chapters of this book in order to get a feel
 for Agda.
 
