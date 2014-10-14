@@ -1,7 +1,7 @@
 -----
 title: Propositions and Predicates
 date: 16th Febuary 2011
-prev: <a href="/pages/peano.html">← Hello, Peano</a>
+prev: <a href="/pages/peano.md">← Hello, Peano</a>
 next: <a href="#">Peano Proofs →</a>
 -----
 
