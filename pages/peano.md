@@ -19,10 +19,12 @@ that sets Agda apart from other languages is its extensive use of unicode to mak
 unicode arrow (→), type `\->`.  I'm going to demonstrate this line by line, so bear with me.
 
 ~~~{.agda}
+module naturals where
 data ℕ : Set where
 ~~~
 
-To begin, we type `data ℕ`. The `data` keyword means we're defining a type - in this case, `ℕ`. For this example, we're specifying that this type, `ℕ`, is of type `Set` (that's what
+We define a module called naturals. Your file has to be named naturals.agda also.
+Then we type `data ℕ`. The `data` keyword means we're defining a type - in this case, `ℕ`. For this example, we're specifying that this type, `ℕ`, is of type `Set` (that's what
 the colon means). 
 
 Hold on a second, types have types? 
