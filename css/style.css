@@ -32,6 +32,12 @@ pre {
    right:auto;
 
 }
+.displaymath {
+   position:relative;
+   left:auto;
+   right:auto;
+
+}
 .left {
    float:left;
    margin-right:20px;
