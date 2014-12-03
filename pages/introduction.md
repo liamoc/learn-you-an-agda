@@ -102,9 +102,9 @@ Types are Propositions
 <img class='img right' src='/static/owl.png' />
 
 If I can come up with a function of type `Foo -> Bar` (and Agda says that it's type correct)
-that means that I've, in addition to written a program, also written a proof by construction
-that, assuming some premise `Foo`, the judgement `Bar` holds (We'll touch more on proofs later - 
-I don't want to get bogged down in details just yet)
+that means that I've written not only a program, but also a proof by construction
+that, assuming some premise `Foo`, the judgement `Bar` holds. (We'll touch more
+on proofs later; I don't want to get bogged down in details just yet.)
 
 Seeing as our `Foo` and `Bar` can be as expressive as we like, this lets us prove *anything we
 want* about our program simply by exploiting this correspondence between proofs and programs -
