@@ -180,11 +180,11 @@ the type suggests. Later on, when we encode more information in our types, our c
 To evaluate an expression (just to verify that it truly does work), we can type `C-c C-n` into emacs, or select "Evaluate term to normal form" from the Agda menu. Then, in the
 minibuffer, we can type an expression for 3 + 2:
 
-    (suc (suc (suc n))) + (suc (suc n))
+    (suc (suc (suc zero))) + (suc (suc zero))
 
 And we get the result (5):
 
-    (suc (suc (suc (suc (suc n)))))
+    (suc (suc (suc (suc (suc zero)))))
 
 In this chapter we have examined the Peano natural numbers, and defined some basic functions and data types in Agda. In the next chapter, we'll look at propositional logic, and
 how to encode logical proofs in Agda using this system.
