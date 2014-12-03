@@ -69,7 +69,7 @@ How does this all relate to Agda?
 
 Agda's types correspond to judgements. If we can construct a value of a certain type, we have
 simultaneously constructed a _proof_ that the theorem encoded by that type holds. As types are
-judgements, and values are theorems, _data constructors_ for a type correspond to _inference rules_
+judgements, and values are their proofs, _data constructors_ for a type correspond to _inference rules_
 for the corresponding proposition. Let's encode the judgement $\textbf{even}$ in Agda, based on
 our definition in natural deduction.
 
