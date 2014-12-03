@@ -1,12 +1,12 @@
 -----
-title: Propositions and Predicates
+title: DEPRECATED: Propositions and Predicates
 date: 16th Febuary 2011
 prev: <a href="/pages/peano.html">← Hello, Peano</a>
 next: <a href="#">Peano Proofs →</a>
 preamble: \usepackage{amsmath} \usepackage{amssymb}
 -----
 
-Warning: This page is still under development. Check back later for a completed version.
+**Warning: This page is still under development. Check back later for a completed version**
 
 “Logic is the art of going wrong with confidence”
 =================================================
@@ -19,9 +19,10 @@ At a fundamental level, a logic is a system of *judgements*. Judgements are stat
 mathematical _language_ that may be proven, or unproven. A _language_ is usually described as a set
 of strings, which make up every _term_ in the language, but this is a simplification: a language
 can be made up of arbitrary data structures. We just use strings to represent these structures
-because any data structure can be represented in some string form.
+because any data structure can be represented in some string form. We're going to look at some
+basic logics, and then encode them within Agda, using the Curry-Howard correspondence.
 
-For our example, we will define a very simple logic based on the language of _natural numbers_
+For our example, we will define a very simple system based on the language of _natural numbers_
 $\mathbb{N}$ we used earlier.
 
 We're going to have just one type of judgement, of the form $\mathbb{N}\ \textbf{even}$, which is
@@ -43,11 +44,11 @@ inference rules with no premises:
 
 $$\dfrac{}{\mathtt{zero}\ \textbf{even}}\textsc{Zero}$$
 
-Then, based on the inductive reasoning we used earlier, our _rules_ for our logic need to express
+Then, based on the inductive reasoning we used earlier, our _rules_ for our system need to express
 that if some number $m$ is even, then $m + 2$ is also even. We do this by writing an
 _inference rule schema_, which is a way of describing a _set_ of rules, by including one
 or more _metavariables_ in an inference rule. If I have some metavariable $x$ in a rule schema,
-I can substitute $x$ for _any_ term in the language, and I will have a valid rule.
+I can substitute $x$ for _any_ wellformed term in the language, and I will have a valid rule.
 
  $$\dfrac{x\ \textbf{even}}{\mathtt{suc}\ (\mathtt{suc}\ x)\ \textbf{even}}\textsc{Step}$$
 
@@ -70,10 +71,11 @@ to the theorem that we want.
 How does this all relate to Agda?
 =================================
 
-Agda's types correspond to judgements. If we can construct a value of a certain type, we have
+As we're embedding these logics inside Agda, Agda's types correspond to their judgements.
+Remember that if we can construct a value of a certain type, we have
 simultaneously constructed a _proof_ that the theorem encoded by that type holds. As types are
-judgements, and values are their proofs, _data constructors_ for a type correspond to _inference rules_
-for the corresponding proposition. Let's encode the judgement $\textbf{even}$ in Agda, based on
+judgements in our embedding, and values are their proofs, _data constructors_ for a type correspond 
+to _inference rules_ in the system. Let's encode the judgement $\textbf{even}$ in Agda, based on
 our definition in natural deduction.
 
 We'll use the mix-fix name `_even` here rather than just `even` so that we can use the judgement
@@ -98,7 +100,7 @@ metavariable $x$. Just writing the rule as-is will result in an error, as $x$ is
    STEP : x even → suc (suc x) even -- x not in scope
 ~~~~~
 
-To solve this, we make `STEP` take a _dependent_ parameter, a natural number $x$, and "lift" the number on to type level:
+To solve this, we make `STEP` take a _dependent_ parameter, a natural number $x$:
 
 ~~~~~{.agda}
    STEP : (x : ℕ) → x even → suc (suc x) even
@@ -239,7 +241,7 @@ TODO: REVISE
 Implication
 -----------
 
-What if we wanted to prove a more complicated proposition than the one above? If we wanted to show an implication, for example? In Agda, an implication proposition corresponds to
+What if we wanted to talk about more interesting propositions in Agda? If we wanted to show an implication, for example? In Agda, an implication proposition corresponds to
 a *function type*.
 
 When we prove an implication, say `A ⇒ B`, we assume the premise (`A`) to be true, and from there try and derive the conclusion (`B`). If we think in terms of proof by construction, this is
@@ -316,12 +318,10 @@ proof₃ : {P Q : Set} → (P ∧ Q) → P
 proof₃ (∧-intro p q) = p
 ~~~~~
 
-Bijection
+Equivalence
 ---------
 
-Now that we have defined conjunction and implication, we can define a notion of logical *equivalence*. Two propositions are *equivalent* if both propositions can be considered to
-be the same. This is defined as: if one is true, the other is also true. In logic, this is called *bijection* and is written as `A ⇔ B`. Bijection can be expressed simply as a conjunction of two
-implications: If A is true then B is true, and if B is true then A is true.
+Now that we have defined conjunction and implication, we can define a notion of logical *equivalence*. Two propositions are *equivalent* if they imply each other. This is defined as: if one is true, the other is also true.
 
 ~~~~{.agda}
 _⇔_ : (P : Set) → (Q : Set) → Set -- \<=> to type ⇔

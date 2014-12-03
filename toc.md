@@ -6,7 +6,7 @@ title: Table of Contents
 ##1.1 [About this tutorial](pages/introduction.html#about-this-tutorial)
 ###[Step One: Learn Haskell](pages/introduction.html#step-one-learn-haskell)
 ##1.2 [What is Agda, anyway?](pages/introduction.html#what-is-agda-anyway)
-###[Types are Proofs](pages/introduction.html#types-are-proofs)
+###[Types are Propositions](pages/introduction.html#types-are-propositions)
 ##1.3 [How do I get started?](pages/introduction.html#how-do-i-get-started)
 
 
