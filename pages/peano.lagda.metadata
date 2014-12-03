@@ -1,0 +1,5 @@
+title:  Hello, Peano
+preamble: \usepackage{amsmath}\usepackage{amsfonts}\usepackage[all]{xy}\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}\usepackage{stmaryrd}
+date: 16th Febuary 2011
+next: <a href="/pages/proofs.html">Propositions and Predicates →</a>
+prev: <a href="/pages/introduction.html">← Introduction</a>

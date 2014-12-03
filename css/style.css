@@ -2,6 +2,7 @@
 /* FONTS FEATURED AT liamoc.net  */
 /* 
 */ 
+.hidden { display : none }
 pre {
    background-color: #EBEBEB;
    padding:5px;
@@ -183,3 +184,48 @@ h3 {
    text-align:center;
    margin-top:40px;
 }
+pre.Agda a.Comment       { color: #B22222 }
+pre.Agda a.Keyword       { color: #CD6600 }
+pre.Agda a.String        { color: #B22222 }
+pre.Agda a.Number        { color: #A020F0 }
+pre.Agda a.Symbol        { color: #404040 }
+pre.Agda a.PrimitiveType { color: #0000CD }
+pre.Agda a.Operator      {}
+
+/* NameKinds. */
+pre.Agda a.Bound                  { color: black   }
+pre.Agda a.InductiveConstructor   { color: #008B00 }
+pre.Agda a.CoinductiveConstructor { color: #8B7500 }
+pre.Agda a.Datatype               { color: #0000CD }
+pre.Agda a.Field                  { color: #EE1289 }
+pre.Agda a.Function               { color: #0000CD }
+pre.Agda a.Module                 { color: #A020F0 }
+pre.Agda a.Postulate              { color: #0000CD }
+pre.Agda a.Primitive              { color: #0000CD }
+pre.Agda a.Record                 { color: #0000CD }
+
+/* OtherAspects. */
+pre.Agda a.DottedPattern      {}
+pre.Agda a.UnsolvedMeta       { color: black; background: yellow         }
+pre.Agda a.UnsolvedConstraint { color: black; background: yellow         }
+pre.Agda a.TerminationProblem { color: black; background: #FFA07A        }
+pre.Agda a.IncompletePattern  { color: black; background: #F5DEB3        }
+pre.Agda a.Error              { color: red;   text-decoration: underline }
+pre.Agda a.TypeChecks         { color: black; background: #ADD8E6        }
+
+/* Standard attributes. */
+pre.Agda a { text-decoration: none }
+pre.Agda a[href]:hover { background-color: #B4EEB4 }
+
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }

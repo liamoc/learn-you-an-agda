@@ -67,7 +67,7 @@ main = hakyll $ do
     match "templates/*" $ do
       compile templateCompiler
 
-    match "pages/*" $ do
+    match ("pages/*.md" .||. "pages/*.lagda") $ do
       route (setExtension "html")
       compile $ let rs = (def { readerSmart = True, readerOldDashes = True, readerExtensions = S.insert Ext_pipe_tables pandocExtensions  }) 
                     ws = (def { writerHTMLMathMethod = GladTeX, writerHighlight = True }) 

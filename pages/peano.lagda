@@ -1,15 +1,16 @@
------
-title: Hello, Peano
-date: 16th Febuary 2011
-next: <a href="/pages/proofs.html">Propositions and Predicates →</a>
-prev: <a href="/pages/introduction.html">← Introduction</a>
-preamble: \usepackage{amsmath}\usepackage{amssymb}
------
+<div class=hidden>
+This shouldn't be visible
+</div>
+
 
 Definitions, Definitions
 ========================
 
-So, unlike the previous chapter, this chapter will actually involve some coding in Agda.
+So, unlike the previous chapter, this chapter will actually involve some coding in Agda. We start with a module name.
+
+\begin{code}
+module peano where
+\end{code}
 
 Most language tutorials start with the typical "Hello, World" example, but this is not really appropriate for a first example in Agda. Unlike other languages, which rely on a
 whole lot of primitive operations and special cases for basic constructs, Agda is very minimal - most of the "language constructs" are actually defined in libraries.
@@ -19,9 +20,20 @@ the whole numbers starting with zero and going up. Mathematics uses the symbol `
 that sets Agda apart from other languages is its extensive use of unicode to make mathematical constructs  more natural). To enter ℕ into emacs, type `\bn`. To enter the 
 unicode arrow (→), type `\->`.  I'm going to demonstrate this line by line, so bear with me.
 
-~~~{.agda}
-data ℕ : Set where
-~~~
+<div class=hidden>
+
+\begin{code}
+open import Agda.Primitive
+
+module Hidden0 where
+
+\end{code}
+
+</div>
+
+\begin{code}
+  data ℕ : Set where
+\end{code}
 
 To begin, we type `data ℕ`. The `data` keyword means we're defining a type - in this case, `ℕ`. For this example, we're specifying that this type, `ℕ`, is of type `Set` (that's what
 the colon means). 
@@ -47,19 +59,28 @@ Structural Induction
 Okay, so, we've defined our type, but now we need to fill the type with values. While a type with no values does have its uses, a natural numbers type with no values is 
 categorically wrong. So, the first natural number we'll define is zero:
 
-~~~{.agda}
-  zero : ℕ 
+<div class=hidden>
+
+\begin{code}
+module Hidden01 where
+\end{code}
+
+</div>
+
+\begin{code}
+  data ℕ : Set where
+    zero : ℕ 
+\end{code}
 ~~~
 
 Here we are simply declaring the term `zero` to be a member of our new type `ℕ`. We could continue to define more numbers this way:
 
-~~~{.agda}
-  zero  : ℕ 
-  one   : ℕ
-  two   : ℕ
-  three : ℕ 
-  four  : ℕ
-~~~
+\begin{code}
+    one   : ℕ
+    two   : ℕ
+    three : ℕ 
+    four  : ℕ
+\end{code}
 
 But we'd quickly find our text editor full of definitions and we'd be no closer to defining all the natural numbers than when we started. So, we should instead refer to a strict
 mathematical definition. The notation I'm using here should be familiar to anyone who knows set theory and/or first-order logic - don't panic if you don't know these things,
@@ -76,10 +97,18 @@ We will look at inductive *proof* in the coming chapters, which shares a similar
 
 For the base case, we've already defined zero to be in $\mathbb{N}$ by saying:
 
-~~~{.agda}
-data ℕ : Set where 
-  zero : ℕ
-~~~
+<div class=hidden>
+
+\begin{code}
+module Hidden where
+\end{code}
+
+</div>
+
+\begin{code}
+  data ℕ : Set where 
+    zero : ℕ
+\end{code}
 
 For the second point (the inductive rule), it gets a little more complicated. First let's take a look at the inductive rule definition in first order logic:
 
@@ -90,11 +119,11 @@ For the second point (the inductive rule), it gets a little more complicated. Fi
 This means, given a natural number `n`, the constructor `suc` will return another natural number. So, in other words, `suc` could be considered a *function*
 that, when given a natural number, produces the next natural number. This means that we can define the constructor `suc` like so:
 
-~~~{.agda}
+\begin{code}
 data ℕ : Set where 
   zero : ℕ
   suc  : ℕ → ℕ
-~~~
+\end{code}
 
 Now we can express the number one as `suc zero`, and the number two as `suc (suc zero)`, and the number three as `suc (suc (suc zero))`, and so on.
 
@@ -125,9 +154,9 @@ One, Two.. Five!
 
 Now we're going to define some arithmetic operations on our natural numbers. Let's try addition, first.
 
-~~~~{.agda}
+~~~{.agda}
 _+_ : ℕ → ℕ → ℕ 
-~~~~
+~~~
 
 Here I'm declaring a function. To start with, I give it a type[^2] - it takes two natural numbers, and returns a natural number. 
 
@@ -150,12 +179,12 @@ flexibility delivers great expressive power, but be careful about using it too m
 
 Now, let's implement this function by structural recursion[^4].
 
-~~~{.agda}
+\begin{code}
 _+_ : ℕ → ℕ → ℕ 
 zero + zero = zero
 zero + n    = n
 (suc n) + n′ = suc (n + n′)  -- use \' to input ′.
-~~~
+\end{code}
 
 Our First Check
 ===============
