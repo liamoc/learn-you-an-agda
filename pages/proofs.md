@@ -394,7 +394,7 @@ logic does not have a well-defined notion of "false". In *classical* and boolean
 contrast, is purely *constructive*. You can either construct a proof for a proposition, making it true, or you fail to construct a proof, making you feel bad.
 
 The only "false" values that exist in intuitionistic logic, therefore, are values for which *there can exist no proof*. In Agda, this corresponds to a type that contains no values.
-We call this type `⊥`, pronounced "bottom". We define it like so:
+We call this type `⊥`, typed `\bot`, pronounced "bottom". We define it like so:
 
 ~~~~~{.agda}
 data ⊥ : Set where -- nothing
@@ -407,7 +407,7 @@ Having such a value allows us to define negation (`¬A`) as true if `A` being tr
 
 ~~~~~{.agda}
 ¬ : Set → Set -- for ¬ type \neg
-¬ A = A → ⊥
+¬ A = A → ⊥   
 ~~~~~
 
 The Curry Howard Correspondence
