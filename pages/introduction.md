@@ -97,7 +97,7 @@ In fact, seeing as the language of values and the language of types are the same
 that you can express about a value can be expressed statically in its type, and machine checked
 by Agda. We can statically eliminate any error scenario from our program.
 
-Types are Proofs
+Types are Propositions
 ----------------
 
 <img class='img right' src='/static/owl.png' />
