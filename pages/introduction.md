@@ -90,10 +90,9 @@ type constructor can be parameterized by both the type of its contents *and* the
 the list in question (we'll be doing this later). This allows the compiler to check for you
 to make sure there are no cases where you attempt to call `head` on a potentially empty list,
 for example. Being able to include values inside a type, and use all the same value-level operations
-on them, is what makes Agda *dependently typed* - Not only can values have a type, 
-but types can have a value.
+on them, is what makes Agda *dependently typed* - Not only can we have types depend on other types (e.g `List`), we can also have types depend on *values* (e.g a length-indexed list). 
 
-In fact, seeing as the language of values and the language of types are the same, *any property*
+In fact, seeing as the language of values and the language of types are the same, (nearly) *any property*
 that you can express about a value can be expressed statically in its type, and machine checked
 by Agda. We can statically eliminate any error scenario from our program.
 
