@@ -168,6 +168,13 @@ but proof obligations can only be machine-checked by Agda if your program termin
 finite data structures, and warns that it can't check proof obligations if non-structural recursion is ever used. We will discuss this more in later chapters, but the only examples
 presented in the early part of this book will be ones that Agda can already prove terminates.
 
+Agda requires every file to have a module declaration. The name of the module must match the name of the file.  For example, if the file that you are working in is called `Peano.adga`, add
+this line at the top:
+
+~~~{.agda}
+module Peano where
+~~~
+
 To run a check, type `C-c C-l` into emacs, or choose Load from the Agda menu. If your program checks correctly, there will be no error messages, no hole markers (yellow highlighting) and no
 orange-highlighted non-terminating sections. It should also say `Agda: Checked` at the bottom of the window, and you get syntax highlighting.
 
