@@ -3,6 +3,7 @@ title: Propositions and Predicates
 date: 16th Febuary 2011
 prev: <a href="/pages/peano.html">← Hello, Peano</a>
 next: <a href="#">Peano Proofs →</a>
+preamble: \usepackage{amsmath} \usepackage{amssymb}
 -----
 
 “Logic is the art of going wrong with confidence”
@@ -30,7 +31,7 @@ new proven statements, or _theorems_, given some existing theorems. We can forma
 axioms and rules in a _meta-logic_ called _natural deduction_, by writing them in the form of
 _inference rules_, which look like this:
 
-$$\frac{P_1 \quad P_2\quad\cdots\quad P_n}{C} {\rm N\scriptsize AME}_{}$$
+$$\dfrac{P_1 \quad P_2\quad\cdots\quad P_n}{C} {\textsc{Zero}}$$
 
 This says that if we can prove all of the _premises_ $P_1 \cdots P_n$, then we can prove the
 _conclusion_ $C$.
@@ -38,7 +39,7 @@ _conclusion_ $C$.
 For our purposes, we have just one axiom, that the number zero is even. Axioms are written as
 inference rules with no premises:
 
-$$\frac{}{\mathtt{zero}\ \textbf{even}}{\rm Z\scriptsize ERO}$$
+$$\dfrac{}{\mathtt{zero}\ \textbf{even}}\textsc{Zero}$$
 
 Then, based on the inductive reasoning we used earlier, our _rules_ for our logic need to express
 that if some number $m$ is even, then $m + 2$ is also even. We do this by writing an
@@ -46,18 +47,18 @@ _inference rule schema_, which is a way of describing a _set_ of rules, by inclu
 or more _metavariables_ in an inference rule. If I have some metavariable $x$ in a rule schema,
 I can substitute $x$ for _any_ term in the language, and I will have a valid rule.
 
- $$\frac{x\ \textbf{even}}{\mathtt{suc}\ (\mathtt{suc}\ x)\ \textbf{even}}{\rm S\scriptsize TEP}$$
+ $$\dfrac{x\ \textbf{even}}{\mathtt{suc}\ (\mathtt{suc}\ x)\ \textbf{even}}\textsc{Step}$$
 
 If I wanted to show that four was even, I would be able to apply this rule twice (once where $x$ is
 two, and once when $x$ is zero), leaving the obligation $\mathtt{zero}\ \textbf{even}$ which is
-shown by the axiom ${\rm Z\scriptsize ERO}$. We can write this proof using natural deduction in a
+shown by the axiom $\textsc{Zero}$. We can write this proof using natural deduction in a
 "proof tree" format:
 
- $$ \frac{\large \frac{\LARGE \frac{}{\mathtt{zero}\ \textbf{even}}{\rm\large Z\normalsize ERO}}
+ $$ \dfrac{\dfrac{\dfrac{}{\mathtt{zero}\ \textbf{even}}{\textsc{Zero}}}
                       {\mathtt{suc}\ (\mathtt{suc}\ \mathtt{zero})\ \textbf{even}}
-                      {\rm\small S\scriptsize TEP}}
+                      {\textsc{Step}}}
          {\mathtt{suc}\ (\mathtt{suc}\ (\mathtt{suc}\ (\mathtt{suc}\ \mathtt{zero})))\ \textbf{even}}
-         {\rm S\scriptsize TEP} $$
+         {\textsc{Step}} $$
 
 When proving a theorem, we work from the bottom of this tree upwards, applying rules that fit the
 form of the goal as we go. When reading the proof, we work _downwards_, reasoning from known axioms
@@ -81,14 +82,14 @@ constructor for our judgement by the type `ℕ`.
 data _even : ℕ → Set where
 ~~~~~
 
-This allows us to define the axiom ${\rm Z\scriptsize ERO}$ as a simple constructor for the type
+This allows us to define the axiom $\textsc{Zero}$ as a simple constructor for the type
 `zero even`:
 
 ~~~~~{.agda}
    ZERO : zero even
 ~~~~~
 
-${\rm S\scriptsize TEP}$ is a little more complicated however, due to the presence of the
+$\textsc{Step}$ is a little more complicated however, due to the presence of the
 metavariable $x$. Just writing the rule as-is will result in an error, as $x$ is not in scope:
 
 ~~~~~{.agda}
@@ -246,11 +247,11 @@ a function (and Agda checks it), then simply by writing that function we have co
 
 Consider a simple statement that is tautologically true: `A ⇒ A` (or, if A is true, then A is true). Let's prove this obvious statement in Agda!
 
-First, let's prove it just for the proposition that natural numbers exist (i.e if natural numbers exist, then natural numbers exist).
+First, let's prove it just for the proposition that 2 is even:
 
 ~~~~~{.agda}
 
-proof₂ : ℕ → ℕ
+proof₂ : (suc (suc zero)) even → (suc (suc zero)) even
 proof₂ ν = ν      -- \nu to type ν.
 
 ~~~~~
@@ -275,7 +276,7 @@ proof₂′ _ x = x
 The new type signature here means: Given some value of type `Set` (i.e a type), called `A`, this returns a function from `A` to `A`. Alternatively, we could view it as a logical
 statement: For any proposition `A`, `A ⇒ A`. In logic, we use the symbol `∀` to mean "for any" or "for all". So, the above type signature could be written in logic as:
 
-    ∀A ⇒ A ⇒ A
+    $$\forall a. A \Rightarrow A$$
 
 Making propositions about *all* members of a set (or universe) is called *Universal Quantification*, and it corresponds to parametric polymorphism (including Java generics and C++ templates) in
 type system lingo.
@@ -283,7 +284,7 @@ type system lingo.
 Now we can implement our special case proof in terms of the more general one:
 
 ~~~~{.agda}
-proof₂ : ℕ → ℕ
+proof₂ : (suc (suc zero)) even → (suc (suc zero)) even
 proof₂ = proof₂′ ℕ
 ~~~~
 
@@ -328,8 +329,7 @@ a ⇔ b = (a → b) ∧ (b → a)
 Serious Proofs
 --------------
 
-Using this we can come up with some proofs of the algebraic properties of conjunction. The commutative property says that `A ∧ B ⇔ B ∧ A`, i.e the order of arguments does not
-matter. Let's prove it:
+Using this we can come up with some proofs of the algebraic properties of conjunction. The commutative property says that $A \land B \Leftrightarrow B \land A$, i.e the order of conjuncts does not matter. Let's prove it:
 
 ~~~~~{.agda}
 ∧-comm′ : {P Q : Set} → (P ∧ Q) → (Q ∧ P)
@@ -389,26 +389,38 @@ The associativity proof is left as an exercise to the reader[^1].
 Negation
 --------
 
-You have probably noticed if you're familiar with boolean logic that I've avoided mentioning *false* throughout this entire chapter. Unlike boolean logic, Agda's *intuitionistic*
-logic does not have a well-defined notion of "false". In *classical* and boolean logics, all propositions are considered to be either true or false. Intuitionistic logic, by
-contrast, is purely *constructive*. You can either construct a proof for a proposition, making it true, or you fail to construct a proof, making you feel bad.
+The only false propositions that exist in logic are values for which *there can exist no proof*. 
+Therefore, the only way to prove that a proposition is false is to show that the corresponding type
+contains no values.
 
-The only "false" values that exist in intuitionistic logic, therefore, are values for which *there can exist no proof*. In Agda, this corresponds to a type that contains no values.
-We call this type `⊥`, typed `\bot`, pronounced "bottom". We define it like so:
+In Agda, the basic type for false propositions is usually called $\bot$, or "bottom", written `\bot`.
 
 ~~~~~{.agda}
 data ⊥ : Set where -- nothing
-
 ~~~~~
 
-That's right. No, it's not a mistake. There are no constructors for `⊥`. It is a type for which it is *impossible* to produce a value.
+That's right. No, it's not a mistake. There are no constructors for `⊥`!
 
-Having such a value allows us to define negation (`¬A`) as true if `A` being true would mean bottom is true (which is impossible). Or, in more formal terms:  `¬A ⇔ (A ⇒ ⊥) `
+Having such a value allows us to define negation (`¬A`) as true if `A` being true would mean bottom is true (which is impossible). In other words, we can say that the type `A` has no inhabitants if every inhabitant of `A` can be
+mapped to an inhabitant of `⊥`. As there are no inhabitants of `⊥`, the only way this can be true is if `A` also
+has no inhabitants.
 
 ~~~~~{.agda}
 ¬ : Set → Set -- for ¬ type \neg
 ¬ A = A → ⊥   
 ~~~~~
+
+<div class=aside>
+Can't get something from nothing
+--------------------------------
+
+Agda's logic is *constructive*, which means it's impossible to prove the statement that all statements are 
+either true or false, $\forall P. P \lor \neg P$. This proposition is called the *law of the excluded middle*. This makes
+it impossible to perform, for example, a general proof by contradiction, or other similar "classical" proofs from mathematics.  There is a large philosophical debate among mathematicians (those who follow Hilbert, and those who follow Brouwer)
+as to which is better.
+</div>
+
+
 
 The Curry Howard Correspondence
 ===============================

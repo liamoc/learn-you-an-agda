@@ -3,6 +3,7 @@ title: Introduction
 date: 16th Febuary 2011
 prev: _
 next: <a href="/pages/peano.html">Hello, Peano → </a>
+preamble: \usepackage{amsmath} 
 -----
 
 About this tutorial
@@ -169,7 +170,7 @@ Once you have Haskell and Emacs, there are three things you still need to do:
   "agda" to find out). If not or otherwise, simply use the Haskell platform's `cabal-install` tool
   to download, compile, and set up Agda.
 
-        $ cabal install agda
+        $ cabal install Agda
 
 * Install Agda mode for emacs. Simply type in a command prompt (where Agda is in your `PATH`):
 

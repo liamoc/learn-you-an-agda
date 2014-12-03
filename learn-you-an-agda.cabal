@@ -17,5 +17,5 @@ cabal-version:       >=1.10
 executable learn-you-an-agda
   main-is: main.hs
   -- other-modules:
-  build-depends:       hakyll >= 4.1, base >= 4.1, pandoc >= 1.10
+  build-depends:       hakyll >= 4.1, base >= 4.1, pandoc >= 1.10, Agda, tagsoup,xhtml,filepath,directory,containers,mtl,transformers,bytestring,base64-bytestring,temporary,process
   default-language:    Haskell2010

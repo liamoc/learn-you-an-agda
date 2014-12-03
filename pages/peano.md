@@ -3,6 +3,7 @@ title: Hello, Peano
 date: 16th Febuary 2011
 next: <a href="/pages/proofs.html">Propositions and Predicates →</a>
 prev: <a href="/pages/introduction.html">← Introduction</a>
+preamble: \usepackage{amsmath}\usepackage{amssymb}
 -----
 
 Definitions, Definitions
