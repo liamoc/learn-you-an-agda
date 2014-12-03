@@ -6,6 +6,8 @@ next: <a href="#">Peano Proofs →</a>
 preamble: \usepackage{amsmath} \usepackage{amssymb}
 -----
 
+Warning: This page is still under development. Check back later for a completed version.
+
 “Logic is the art of going wrong with confidence”
 =================================================
 

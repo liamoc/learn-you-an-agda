@@ -71,7 +71,6 @@ module Hidden01 where
   data ℕ : Set where
     zero : ℕ 
 \end{code}
-~~~
 
 Here we are simply declaring the term `zero` to be a member of our new type `ℕ`. We could continue to define more numbers this way:
 
@@ -201,7 +200,7 @@ presented in the early part of this book will be ones that Agda can already prov
 To run a check, type `C-c C-l` into emacs, or choose Load from the Agda menu. If your program checks correctly, there will be no error messages, no hole markers (yellow highlighting) and no
 orange-highlighted non-terminating sections. It should also say `Agda: Checked` at the bottom of the window, and you get syntax highlighting.
 
-Right now, our checks aren't all that meaningful - the only thing they prove is that our addition function does indeed take any natural number and produce a natural number, as
+Right now, our checks aren't all that meaningful - the only thing they prove is that our addition function does indeed take any two natural numbers and produce a natural number, as
 the type suggests. Later on, when we encode more information in our types, our checks can mean a lot more - even more than running and testing the program.
 
 "I Have Merely Proven It Correct"
