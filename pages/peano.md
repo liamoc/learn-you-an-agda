@@ -162,7 +162,7 @@ Our First Check
 Normally we'd run the program at this point to verify that it works, but in Agda one does that pretty rarely. Instead, what we do is get Agda to *check* our code. This checks
 that all our proof obligations have been met:
 
-* It checks your types. Types are how you encode proofs in Agda (although we haven't done any non-trivial proofs yet), so this is important.
+* It checks your types. Types are how you encode proof obligations in Agda (although we haven't done any non-trivial proofs yet), so this is important.
 * It checks that your program provably terminates. Checking that any program terminates is in general undecidable (see [The Halting Problem](http://en.wikipedia.org/wiki/Halting_problem)),
 but proof obligations can only be machine-checked by Agda if your program terminates. To circumvent this dilemma, Agda runs its checker only on *structural* recursion with 
 finite data structures, and warns that it can't check proof obligations if non-structural recursion is ever used. We will discuss this more in later chapters, but the only examples
