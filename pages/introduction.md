@@ -119,7 +119,7 @@ have no experience in formal verification. Often testing methodologies are prese
 alternative.
 
 While formal verification is excessive in some situations where bugs are acceptable, I hardly think
-that testing could replace formal verification completely. Here's three of reasons why:
+that testing could replace formal verification completely. Here's three reasons why:
 
  * **Proofs work in concurrent scenarios**. You can't reliably unit test against race conditions, starvation 
     or deadlock. All of these things can be eliminated via formal methods.
