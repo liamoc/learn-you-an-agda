@@ -1,0 +1,45 @@
+# For more information, see: https://github.com/commercialhaskell/stack/blob/release/doc/yaml_configuration.md
+
+# Specifies the GHC version and set of packages available (e.g., lts-3.5, nightly-2015-09-21, ghc-7.10.2)
+resolver: lts-3.11
+
+# Local packages, usually specified by relative directory name 
+packages:
+# This includes a bunch of paths for my local packages. 
+- '.'
+- '../../../langs/agda'
+- '../agda-snippets/agda-snippets'
+- '../agda-snippets/agda-snippets-hakyll'
+- '../latex-formulae/latex-formulae-pandoc'
+- '../latex-formulae/latex-formulae-image'
+- '../latex-formulae/latex-formulae-hakyll'
+
+# Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
+extra-deps:
+- latex-formulae-image-0.1.1.0
+- latex-formulae-pandoc-0.2.0.0
+- latex-formulae-hakyll-0.1.0.0
+- agda-snippets-2.4.3
+- agda-snippets-hakyll-0.1.1.1
+- regex-tdfa-text-1.0.0.3
+
+# Override default flag values for local packages and extra-deps
+flags: {}
+
+# Extra package databases containing global packages
+extra-package-dbs: []
+
+# Control whether we use the GHC we find on the path
+# system-ghc: true
+
+# Require a specific version of stack, using version ranges
+# require-stack-version: -any # Default
+# require-stack-version: >= 0.1.4.0
+
+# Override the architecture used by stack, especially useful on Windows
+# arch: i386
+# arch: x86_64
+
+# Extra directories used by stack for building
+# extra-include-dirs: [/path/to/dir]
+# extra-lib-dirs: [/path/to/dir]

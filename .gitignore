@@ -3,3 +3,5 @@
 /_site/
 /cabal-dev/
 /dist/
+.stack-work
+*.agdai
