@@ -61,7 +61,7 @@ main = do
       compile $ do
         pr <- fmap (fromMaybe defaultPreamble . M.lookup "preamble") (getMetadata =<< getUnderlying)
         literateAgdaCompilerWithTransformM agdaOpts Markdown agdaLibURI readerSettings writerSettings
-                 (renderEquations $ formulaSettings pr)
+                 (traverse $ renderEquations $ formulaSettings pr)
              >>= loadAndApplyTemplate "templates/default.html" defaultContext
              >>= relativizeUrls
 

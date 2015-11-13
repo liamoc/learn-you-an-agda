@@ -26,6 +26,6 @@ executable learn-you-an-agda
                      , agda-snippets-hakyll  >= 0.1.1 && < 0.2
                      , latex-formulae-image  >= 0.1.1 && < 0.2
                      , latex-formulae-pandoc >= 0.2   && < 0.3
-                     , latex-formulae-hakyll >= 0.1   && < 0.2
+                     , latex-formulae-hakyll >= 0.2   && < 0.3
                      , network-uri           >= 2.6   && < 2.7
   default-language:    Haskell2010
