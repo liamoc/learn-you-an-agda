@@ -111,7 +111,7 @@ By using dependent types, we can define rule schema: `STEP zero` here refers to 
 metavariables earlier. 
 
 In this case, the type of `x` can be inferred from its usage, as we use it with `_even` which takes
-an `ℕ` as an argument, so we can use the special `∀` symbol to introduce `x` and omit the type:
+an `ℕ` as an argument, so we can use the special `∀` symbol (written using \forall) to introduce `x` and omit the type:
 
 ~~~~~{.agda}
    STEP : ∀ x → x even → suc (suc x) even
